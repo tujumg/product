@@ -1,12 +1,19 @@
-# 讀取檔案
+#增加檢查檔案功能
+import os#operating system
 products = []
-with open('products.csv','r',encoding='utf-8')as f:
-	for line in f:
-		if '商品,價格' in line:
-			continue 
-		name,price = line .strip().split(',')  #字串可以用.split來切割
-		products.append([name,price])         #.strip來去掉換行符號(\n)
-print(products)
+if os.path.isfile('products.csv'):
+	print('找到檔案 ')
+	with open('products.csv','r',encoding='utf-8')as f:
+		for line in f:
+			if '商品,價格' in line:
+				continue 
+			name,price = line .strip().split(',')  #字串可以用.split來切割
+			products.append([name,price])         #.strip來去掉換行符號(\n)
+	print(products)
+else:
+	print('找不到檔案') 
+# 讀取檔案
+
 #讓使用者輸入
 while True:
 	name = input('請輸入商品名稱')
